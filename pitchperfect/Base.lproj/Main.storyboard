@@ -16,6 +16,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Je-xD-8fX">
+                                <rect key="frame" x="187" y="500" width="40" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" systemColor="systemGray2Color"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s8r-vi-1K1">
                                 <rect key="frame" x="167" y="772" width="80" height="80"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
@@ -30,7 +36,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z5w-sZ-1Cv">
-                                <rect key="frame" x="152" y="420" width="110" height="110"/>
+                                <rect key="frame" x="152" y="390" width="110" height="110"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="110" id="9dM-sq-Ndw"/>
                                     <constraint firstAttribute="height" constant="110" id="uzJ-ZT-NEf"/>
@@ -46,13 +52,16 @@
                         <constraints>
                             <constraint firstItem="Z5w-sZ-1Cv" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="N2n-73-c1H"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="s8r-vi-1K1" secondAttribute="bottom" constant="10" id="NMn-2q-w6c"/>
-                            <constraint firstItem="Z5w-sZ-1Cv" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="m4R-f7-5eo"/>
+                            <constraint firstItem="1Je-xD-8fX" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="TwW-l7-vln"/>
+                            <constraint firstItem="1Je-xD-8fX" firstAttribute="top" secondItem="Z5w-sZ-1Cv" secondAttribute="bottom" id="fXN-zM-jNy"/>
+                            <constraint firstItem="Z5w-sZ-1Cv" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="-30" id="m4R-f7-5eo"/>
                             <constraint firstItem="s8r-vi-1K1" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="zsB-bI-ZRb"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="X6q-C2-UND"/>
                     <connections>
                         <outlet property="recordAudioOutlet" destination="Z5w-sZ-1Cv" id="9se-EA-IQA"/>
+                        <outlet property="recordingStatue" destination="1Je-xD-8fX" id="hbg-8p-2eb"/>
                         <outlet property="stopOutlet" destination="s8r-vi-1K1" id="SXR-cl-NJ3"/>
                         <segue destination="vzp-KD-zUv" kind="show" identifier="stopRecord" id="BEp-AO-gTH"/>
                     </connections>
@@ -98,7 +107,7 @@
                                                     <action selector="playSoundForButton:" destination="vzp-KD-zUv" eventType="touchUpInside" id="qk9-xG-ziE"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fFp-5j-9f2" userLabel="Fast Button">
+                                            <button opaque="NO" tag="1" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fFp-5j-9f2" userLabel="Fast Button">
                                                 <rect key="frame" x="191" y="0.0" width="191" height="228.5"/>
                                                 <state key="normal" image="Fast"/>
                                                 <userDefinedRuntimeAttributes>
@@ -115,7 +124,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="qgp-PP-JQf">
                                         <rect key="frame" x="0.0" y="228.5" width="382" height="229"/>
                                         <subviews>
-                                            <button contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wHs-kX-FKM" userLabel="Chipmunk Button">
+                                            <button tag="2" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wHs-kX-FKM" userLabel="Chipmunk Button">
                                                 <rect key="frame" x="0.0" y="0.0" width="191" height="229"/>
                                                 <state key="normal" image="LowPitch"/>
                                                 <userDefinedRuntimeAttributes>
@@ -127,7 +136,7 @@
                                                     <action selector="playSoundForButton:" destination="vzp-KD-zUv" eventType="touchUpInside" id="e3w-S3-16O"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tlW-Ay-qZN" userLabel="Darth Vader button">
+                                            <button opaque="NO" tag="3" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tlW-Ay-qZN" userLabel="Darth Vader button">
                                                 <rect key="frame" x="191" y="0.0" width="191" height="229"/>
                                                 <state key="normal" image="HighPitch"/>
                                                 <userDefinedRuntimeAttributes>
@@ -144,7 +153,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Kkh-X8-X70">
                                         <rect key="frame" x="0.0" y="457.5" width="382" height="228.5"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="52J-vc-iW5" userLabel="Echo Button">
+                                            <button opaque="NO" tag="4" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="52J-vc-iW5" userLabel="Echo Button">
                                                 <rect key="frame" x="0.0" y="0.0" width="191" height="228.5"/>
                                                 <state key="normal" image="Reverb"/>
                                                 <userDefinedRuntimeAttributes>
@@ -156,7 +165,7 @@
                                                     <action selector="playSoundForButton:" destination="vzp-KD-zUv" eventType="touchUpInside" id="5cW-17-cIB"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wGf-Fu-BmW" userLabel="Reverb Button">
+                                            <button opaque="NO" tag="5" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wGf-Fu-BmW" userLabel="Reverb Button">
                                                 <rect key="frame" x="191" y="0.0" width="191" height="228.5"/>
                                                 <state key="normal" image="Echo"/>
                                                 <userDefinedRuntimeAttributes>
@@ -229,6 +238,9 @@
         <image name="Stop" width="155" height="155"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

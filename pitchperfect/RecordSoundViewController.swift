@@ -11,10 +11,11 @@ class RecordSoundViewController: UIViewController , AVAudioRecorderDelegate {
     var audioRecorder : AVAudioRecorder!
     @IBOutlet weak var recordAudioOutlet: UIButton!
     @IBOutlet weak var stopOutlet: UIButton!
+    @IBOutlet weak var recordingStatue: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        stopOutlet.isEnabled = false
-       
+        isRecordNow(state: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -22,10 +23,26 @@ class RecordSoundViewController: UIViewController , AVAudioRecorderDelegate {
 
     }
         
+    func isRecordNow(state : Bool) {
+        if state == true
+        {
+            stopOutlet.isEnabled = true
+            recordAudioOutlet.isEnabled = false
+            recordingStatue.text = "recording ....."
+        
+            
+        }
+        else
+        {
+            recordAudioOutlet.isEnabled = true
+            stopOutlet.isEnabled = false
+            recordingStatue.text = "Tap to record"
+        }
+    }
+    
     
     @IBAction func recordAudio(_ sender: Any) {
-        stopOutlet.isEnabled = true
-        recordAudioOutlet.isEnabled = false
+        isRecordNow(state: true)
         let dirPath = NSSearchPathForDirectoriesInDomains(.documentDirectory,.userDomainMask, true)[0] as String
             let recordingName = "recordedVoice.wav"
             let pathArray = [dirPath, recordingName]
@@ -40,10 +57,10 @@ class RecordSoundViewController: UIViewController , AVAudioRecorderDelegate {
             audioRecorder.prepareToRecord()
             audioRecorder.record()
     }
+   
     
     @IBAction func stopRecord(_ sender: Any) {
-        recordAudioOutlet.isEnabled = true
-        stopOutlet.isEnabled = false
+       isRecordNow(state: false)
         audioRecorder.stop()
            let audioSession = AVAudioSession.sharedInstance()
            try! audioSession.setActive(false)
@@ -60,7 +77,7 @@ class RecordSoundViewController: UIViewController , AVAudioRecorderDelegate {
     }
     
     override func prepare(for segue : UIStoryboardSegue , sender: Any?){
-        if segue.identifier == "stop record"{
+        if segue.identifier == "stopRecord"{
             let playSoundVC = segue.destination as! playSoundViewController
             let recordedAudioURL = sender as! URL
             playSoundVC.recordedAudioURL = recordedAudioURL
