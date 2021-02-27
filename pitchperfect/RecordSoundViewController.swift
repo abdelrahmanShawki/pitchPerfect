@@ -18,26 +18,23 @@ class RecordSoundViewController: UIViewController , AVAudioRecorderDelegate {
         isRecordNow(state: false)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
+  
+    enum recordingStatueLabel : String {
+        case recording = "recording ..."
+        case notRecording =  "tap to record"
     }
-        
+    
     func isRecordNow(state : Bool) {
-        if state == true
-        {
-            stopOutlet.isEnabled = true
-            recordAudioOutlet.isEnabled = false
-            recordingStatue.text = "recording ....."
         
-            
+        stopOutlet.isEnabled = state
+        recordAudioOutlet.isEnabled = !state
+        switch state {
+            case true:
+                recordingStatue.text = recordingStatueLabel.recording.rawValue
+            default:
+            recordingStatue.text = recordingStatueLabel.notRecording.rawValue
         }
-        else
-        {
-            recordAudioOutlet.isEnabled = true
-            stopOutlet.isEnabled = false
-            recordingStatue.text = "Tap to record"
-        }
+     
     }
     
     
@@ -82,6 +79,7 @@ class RecordSoundViewController: UIViewController , AVAudioRecorderDelegate {
             let recordedAudioURL = sender as! URL
             playSoundVC.recordedAudioURL = recordedAudioURL
         }
+       
     }
     
 }

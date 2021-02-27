@@ -10,7 +10,7 @@ import AVFoundation
 
 // MARK: - PlaySoundsViewController: AVAudioPlayerDelegate
 
-extension playSoundViewController: AVAudioPlayerDelegate {
+extension playSoundViewController  : AVAudioPlayerDelegate {
     
     // MARK: Alerts
     
